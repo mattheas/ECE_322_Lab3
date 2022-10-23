@@ -35,12 +35,28 @@ class TestMockRandomMethod(unittest.TestCase):
 	@patch.object(MathPackage, 'random')
 	def test_random_method(self, mock_random):
 		mock_random.return_value = [1,2,3]
-
+		self.myMathPackage.random.call_args == ()
+		
+		# call to mock method
 		self.myMathPackage.random(3,1,3)
+		
+		# assertion statements
 		self.myMathPackage.random.assert_called()
 		self.myMathPackage.random.assert_called_once()
 		self.myMathPackage.random.assert_called_with(3,1,3)
 		self.myMathPackage.random.assert_called_once_with(3,1,3)
+		self.assertEqual(self.myMathPackage.random.call_count, 1)
+		self.assertEqual(self.myMathPackage.random.call_args, ((3,1,3),) )
+		
+		#call to mock method
+		self.myMathPackage.random(5,1,100)
+		
+		# assertion statements
+		expected_args = [((3,1,3),), ((5,1,100),)]
+		self.assertEqual(self.myMathPackage.random.call_args_list, expected_args)
+		#expected_calls = ['call.random()', 'call.random()']
+		#self.assertEqual(self.myMathPackage.random.method_calls, expected_calls)
+		
 
 
 class TestMockMaxMethod(unittest.TestCase):
@@ -50,11 +66,8 @@ class TestMockMaxMethod(unittest.TestCase):
 	
 	@patch.object(MathPackage, 'max')
 	def test_max_method(self, mock_max):
-		print("HELLO max")
 		mock_max.return_value = 5
-		#self.myMathPackage.max([1, 2, 3])
-		#self.myMathPackage.max.assert_called_once()
-		
+
 
 class TestMockMinMethod(unittest.TestCase):
 
@@ -65,8 +78,7 @@ class TestMockMinMethod(unittest.TestCase):
 	def test_max_method(self, mock_min):
 		print("HELLO min")
 		mock_min.return_value = 1
-		#self.myMathPackage.max([1, 2, 3])
-		#self.myMathPackage.max.assert_called_once()
+
 
 
 if __name__ == '__main__':
