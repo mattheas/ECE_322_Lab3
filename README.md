@@ -24,4 +24,15 @@ The file test_MathPackage.py uses white box testing techniques (i.e. unit tests)
 - Statement coverage
 - Branch coverage
 
-The test cases are written using Mock objects. 
+The test cases are written using a Mock object. For the second set of test cases each method in MathPackage.py is mocked (using @patch.object) instead of the entire object and the following assertions are used for each method:
+
+- assert_called
+- assert_called_once
+- assert_called_with
+- assert_called_once_with
+- call_count
+- call_args
+- call_args_list
+- method_calls
+
+Furthermore the return value of one method is mocked (I chose the max method)
