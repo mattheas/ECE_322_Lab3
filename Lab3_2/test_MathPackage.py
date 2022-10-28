@@ -69,6 +69,31 @@ class TestMathPackage(unittest.TestCase):
     print("HELLO min")
     mock_min.return_value = 1
     
+    mock_min.call_args == ()
+
+    # call to mock method
+    mock_min([3,1,3])
+
+    # assertion statements
+    mock_min.assert_called()
+    mock_min.assert_called_once()
+    mock_min.assert_called_with([3,1,3])
+    mock_min.assert_called_once_with([3,1,3])
+    self.assertEqual(mock_min.call_count, 1)
+    self.assertEqual(mock_min.call_args.args, ([3,1,3],))
+
+    #call to mock method
+    mock_min([5,6,7])
+
+    # assertion statements
+    self.assertEqual(mock_min.call_args_list[0].args, ([3,1,3],))
+    self.assertEqual(mock_min.call_args_list[1].args, ([5,6,7],))
+    self.assertEqual(mock_min.method_calls, [])
+    
+    myMockMathPackage = Mock()
+    myMockMathPackage.min.return_value = 10 
+    self.assertEqual(myMockMathPackage.min(), 10)
+    
     
 
 if __name__ == '__main__':
