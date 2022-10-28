@@ -5,10 +5,8 @@ from MathPackage import MathPackage
   
 class TestMathPackage(unittest.TestCase):
 
-  # create a MathPackage obj and turn it into a mock object
+  # create a MathPackage obj
   myMathPackage = MathPackage()
-
-  # tests mock each method
 
   @patch.object(MathPackage, 'random')
   def test_random_method(self, mock_random):
@@ -71,27 +69,6 @@ class TestMathPackage(unittest.TestCase):
     print("HELLO min")
     mock_min.return_value = 1
     
-    
-  # create a MathPackage obj and turn it into a mock object
-  mockMathObj = MathPackage()
-  mockMathObj = Mock()
-
-  # tests provides statement/ branch coverage for methods
-
-  def test_random_method_coverage(self):
-    self.mockMathObj.random(3, 1, 5)
-    self.mockMathObj.random.assert_called_once()
-    print("HELLO cov1")
-
-  def test_max_method_coverage(self):
-    self.mockMathObj.max([1, 2, 3])
-    self.mockMathObj.max.assert_called_once() 
-    print("HELLO cov2")
-
-  def test_min_method_coverage(self):
-    self.mockMathObj.min([3, 4, 5])
-    self.mockMathObj.min.assert_called_once()  
-    print("HELLO cov3")
     
 
 if __name__ == '__main__':
