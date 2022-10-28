@@ -10,10 +10,6 @@ class TestMyBisect(unittest.TestCase):
     test_mybisect_obj = MyBisect(test_polynomial_obj)
     test_mybisect_obj1 = MyBisect(1, test_polynomial_obj)
 
-    def test_mybisect_obj_creation(self):
-        self.assertIsNotNone(self.test_mybisect_obj), "MyBisect object not initialized"
-
-    # successful test case that provides most statement coverage and finds root within given iterations
     def test_mybisect_statement_coverage_1(self):
         root_val = self.test_mybisect_obj.run(0, 3)
         self.assertTrue(0.98 <= root_val <= 1.02)
@@ -28,4 +24,4 @@ class TestMyBisect(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main() s
+    unittest.main() 
